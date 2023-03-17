@@ -1,3 +1,5 @@
+This is an interview assignment in React presenting some api data in a simple ui
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
