@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { API_KEY } from "../../constants/constants";
 
 interface IRental {
   check_in_time: string;
@@ -25,10 +26,10 @@ const RentalList = () => {
 
   useEffect(() => {
     fetch(
-      ` https://eric.hosthub.com/api/2019-03-01/rentals?Authorization=NzQxOGIyZTMtYmYyMS00MzE3LWE2NTEtNWQzY2EzMzVkYTEy`,
+      ` https://eric.hosthub.com/api/2019-03-01/rentals?Authorization=${API_KEY}`,
       {
         headers: {
-          Authorization: `NzQxOGIyZTMtYmYyMS00MzE3LWE2NTEtNWQzY2EzMzVkYTEy`,
+          Authorization: `${API_KEY}`,
         },
       }
     )

@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
-const menuItems = [
-  { text: "Rentals", path: "/rentals" },
-  { text: "Settings ", path: "/settings" },
-];
+import { menuItems } from "../../constants/constants";
 
 const MenuItem = (item: { text: string; path: string }): JSX.Element => {
   return (
@@ -14,15 +10,17 @@ const MenuItem = (item: { text: string; path: string }): JSX.Element => {
   );
 };
 
-const Navbar = () => {
+const Sidebar = () => {
   return (
     <nav
       style={{
-        width: "30%",
+        minWidth: "300px",
+        height: "100vh",
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
-        marginTop: "30px",
+        paddingTop: "30px",
+        backgroundColor: "rgb(250, 250, 250)",
       }}
     >
       <ul>
@@ -34,4 +32,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Sidebar;
