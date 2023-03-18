@@ -9,6 +9,11 @@ import Settings from "./components/Settings/Settings.tsx";
 import Header from "./components/Header/Header.tsx";
 import RentalDetails from "./components/RentalDetails/RentalDetails.tsx";
 
+// Todo: Add more data to the API
+// Todo: Move css to a separate file
+// Todo: Display data from the API
+// Todo: Add a loader
+
 const App = () => {
   return (
     <div style={{ display: "flex", width: "100%", height: "100%" }}>

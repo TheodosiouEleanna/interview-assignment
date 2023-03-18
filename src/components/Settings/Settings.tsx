@@ -34,11 +34,9 @@ export const Button = ({
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }) => {
   return (
-    <div style={{ margin: "10px" }}>
-      <button type={type} style={style} onClick={onClick}>
-        {label}
-      </button>
-    </div>
+    <button type={type} style={style} onClick={onClick}>
+      {label}
+    </button>
   );
 };
 

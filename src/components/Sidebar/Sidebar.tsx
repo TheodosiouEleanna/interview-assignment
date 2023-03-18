@@ -19,10 +19,16 @@ const Sidebar = () => {
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
-        paddingTop: "30px",
         backgroundColor: "rgb(241, 241, 241)",
       }}
     >
+      <div
+        style={{
+          height: "50px",
+          width: "80%",
+          borderBottom: "1px solid rgb(51, 51, 51)",
+        }}
+      ></div>
       <ul>
         {menuItems.map((item) => {
           return <MenuItem {...item} key={item.text} />;

@@ -31,10 +31,10 @@ ul {
 }
 li {
   list-style: none;
-  padding: 20px 110px;
+  padding: 20px 20px;
 }
 li:hover {
-  background-color: rgb(184, 184, 184);
+  font-weight: bold;
 }
 a {
   text-decoration: none;
@@ -89,21 +89,19 @@ button:hover {
   background-color: rgb(73, 98, 110);
 }
 .image-container {
-  min-width: 36%;
-  height: 300px;
+  min-width: 30%;
   background-size: cover;
   background-position: center;
 }
 .details {
+  display: flex;
+  flex-direction: column;
+  position: relative;
   min-height: 400px;
   max-width: 80%;
   background-color: rgb(241, 241, 241);
-  position: relative;
   border-radius: 10px;
   margin: 40px;
-  display: flex;
-  flex-direction: column;
-  height: 50vh;
   margin-left: 30;
 }
 .expanded {

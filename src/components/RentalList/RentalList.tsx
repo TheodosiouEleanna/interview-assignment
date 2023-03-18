@@ -60,7 +60,9 @@ const RentalList = () => {
         }}
       >
         {rentals.length
-          ? rentals.map((rental) => <RentalCard rental={rental} />)
+          ? rentals.map((rental) => (
+              <RentalCard rental={rental} key={rental.id} />
+            ))
           : "no rentals"}
       </div>
     </div>
