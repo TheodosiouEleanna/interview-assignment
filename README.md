@@ -1,5 +1,12 @@
 This is an interview assignment in React presenting some api data in a simple ui
 
+Acceptance criteria:
+
+- display a list of rentals
+- settings screen with 2 fields. api key and full name.
+- when the user clicks a rental, he should see some basic details and below a list of the upcoming calendar events
+- api key and full name should be saved on the browser and be there after a refresh. They can go away if users clears cache/cookies.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

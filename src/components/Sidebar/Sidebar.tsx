@@ -5,22 +5,22 @@ import { menuItems } from "../../constants/constants";
 const MenuItem = (item: { text: string; path: string }): JSX.Element => {
   return (
     <li>
-      <Link to={item.path}>{item.text}</Link>
+      <Link to={item.path}>{item.text.toUpperCase()}</Link>
     </li>
   );
 };
 
 const Sidebar = () => {
   return (
-    <nav
+    <div
       style={{
-        minWidth: "300px",
-        height: "100vh",
+        minWidth: "20%",
+        height: "100%",
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
         paddingTop: "30px",
-        backgroundColor: "rgb(250, 250, 250)",
+        backgroundColor: "rgb(241, 241, 241)",
       }}
     >
       <ul>
@@ -28,7 +28,7 @@ const Sidebar = () => {
           return <MenuItem {...item} key={item.text} />;
         })}
       </ul>
-    </nav>
+    </div>
   );
 };
 

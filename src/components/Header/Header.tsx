@@ -5,12 +5,10 @@ const Header = () => {
     <div
       style={{
         width: "100%",
-        minHeight: "70px",
+        minHeight: "50px",
         backgroundColor: "rgb(38, 50, 56)",
       }}
-    >
-      Header
-    </div>
+    ></div>
   );
 };
 
