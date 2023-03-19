@@ -17,6 +17,7 @@ const Home = () => {
           marginTop: "40px",
         }}
       />
+      Navigate to Rentals from the sidebar
     </div>
   );
 };

@@ -6,7 +6,7 @@ import Loader from "../Loader/Loader";
 import Card from "./Card/Card";
 import Divider from "../Divider/Divider";
 import PageWrapper from "../PageWrapper/PageWrapper";
-import NoContent from "../NoConent/NoContent";
+import NoContent from "../NoContent/NoContent";
 
 interface IRentalsStateProps {
   object: string;

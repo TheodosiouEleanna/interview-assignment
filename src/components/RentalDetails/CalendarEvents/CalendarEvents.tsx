@@ -5,7 +5,7 @@ import Card from "../../RentalList/Card/Card";
 import { getData } from "../../../utils/functions/functions";
 import Loader from "../../Loader/Loader";
 import Divider from "src/components/Divider/Divider";
-import NoContent from "src/components/NoConent/NoContent";
+import NoContent from "src/components/NoContent/NoContent";
 
 interface ICalendarStateProps {
   object: string;
@@ -51,7 +51,7 @@ const CalendarEvents = ({ id }: { id: string }) => {
               title={event.title}
               item={event}
               hideButton
-              style={{ width: "90%", height: "90%" }}
+              style={{ width: "90%", minHeight: "450px" }}
             />
           ))}
         </div>
