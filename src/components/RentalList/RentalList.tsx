@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { apiPath } from "../../constants/constants";
-import { getData } from "../../functions/functions.ts";
+import { getData } from "../../functions/functions";
 import { IRental } from "../../types/interfaces";
-import Loader from "../Loader/Loader.tsx";
-import Title from "../Title/Title.tsx";
-import Card from "./Card/Card.tsx";
+import Loader from "../Loader/Loader";
+import Title from "../Title/Title";
+import Card from "./Card/Card";
 
 interface IRentalsStateProps {
   object: string;
@@ -21,7 +21,8 @@ const RentalList = () => {
         const data = await getData({
           resourcePath: `${apiPath}/rentals`,
         });
-        setRentals(data);
+        setRentals(data as IRentalsStateProps);
+        // setRentals({ object: "", data: [] });
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -46,7 +47,7 @@ const RentalList = () => {
       <div
         style={{
           width: "80%",
-          marginLeft: "30px",
+          marginLeft: "40px",
           display: "flex",
           flexDirection: "column",
         }}
@@ -60,7 +61,7 @@ const RentalList = () => {
 
         {rentals?.data.length ? (
           rentals.data.map((rental) => (
-            <Card item={rental} key={rental.id} title={rental.name} />
+            <Card item={rental} key={rental.id} title={rental.name || ""} />
           ))
         ) : (
           <div

@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState, useMemo } from "react";
 import { API_KEY } from "../../constants/constants";
-import Button from "../Button/Button.tsx";
-import Input from "../Input/Input.tsx";
-import Card from "../RentalList/Card/Card.tsx";
-import Title from "../Title/Title.tsx";
+import Button from "../Button/Button";
+import Input from "../Input/Input";
+import Card from "../RentalList/Card/Card";
+import Title from "../Title/Title";
 
 interface IStateSettings {
   fullName: string;
@@ -34,8 +34,6 @@ const Settings = () => {
   const handleInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target;
-      console.log(name, value);
-
       setSettings({
         ...settings,
         [name]: value,
@@ -75,13 +73,7 @@ const Settings = () => {
         </div>
       </form>
     ),
-    [
-      handleInputChange,
-      handleSubmit,
-      settings.apiKey,
-      settings.fullName,
-      settings.helperText,
-    ]
+    [handleInputChange, handleSubmit, settings]
   );
 
   useEffect(() => {
@@ -94,9 +86,9 @@ const Settings = () => {
   }, []);
 
   return (
-    <div style={{ margin: "40px" }}>
+    <div style={{ margin: "40px", width: "80%" }}>
       <Title title='Settings' />
-      <Card item={{}} content={cardContent} hideButton />
+      <Card title='' item={{}} content={cardContent} hideButton />
     </div>
   );
 };

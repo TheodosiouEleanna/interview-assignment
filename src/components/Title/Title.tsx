@@ -1,5 +1,5 @@
 import React from "react";
-import Divider from "../Divider/Divider.tsx";
+import Divider from "../Divider/Divider";
 
 const Title = ({
   title,

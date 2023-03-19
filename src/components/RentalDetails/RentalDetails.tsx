@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { apiPath } from "../../constants/constants";
-import { getData } from "../../functions/functions.ts";
+import { getData } from "../../functions/functions";
 import { IRental } from "../../types/interfaces";
-import Loader from "../Loader/Loader.tsx";
-import Card from "../RentalList/Card/Card.tsx";
-import Title from "../Title/Title.tsx";
-import CalendarEvents from "./CalendarEvents/CalendarEvents.tsx";
+import Loader from "../Loader/Loader";
+import Card from "../RentalList/Card/Card";
+import Title from "../Title/Title";
+import CalendarEvents from "./CalendarEvents/CalendarEvents";
 
 const RentalDetails = () => {
   const { rentalId } = useParams();
@@ -32,18 +32,25 @@ const RentalDetails = () => {
     return <Loader />;
   }
 
-  console.log(rental);
-
   return (
     <div style={{ overflow: "auto" }}>
-      <div style={{ margin: "30px" }}>
-        <Title title='Rental Details' style={{ padding: "20px" }} />
-        <div style={{ marginLeft: "30px" }}>
-          {rental && <Card item={rental} hideButton title={rental.name} />}
+      <div style={{ width: "80%" }}>
+        <div style={{ margin: "30px" }}>
+          <Title
+            title='Rental Details'
+            style={{
+              marginTop: "40px",
+            }}
+          />
+          <div style={{ marginLeft: "30px" }}>
+            {rental && (
+              <Card item={rental} hideButton title={rental.name || ""} />
+            )}
+          </div>
+          <Title title='Upcoming Calendar Events' style={{ padding: "20px" }} />
         </div>
-        <Title title='Upcoming Calendar Events' style={{ padding: "20px" }} />
+        <CalendarEvents id={rentalId || ""} />
       </div>
-      <CalendarEvents id={rentalId} />
     </div>
   );
 };

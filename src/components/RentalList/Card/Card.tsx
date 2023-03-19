@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../../Button/Button.tsx";
-import Divider from "../../Divider/Divider.tsx";
-import Title from "../../Title/Title.tsx";
+import Button from "../../Button/Button";
+import Title from "../../Title/Title";
 
 export const displayData = (rental: {
   [name: string]: any;
@@ -38,7 +37,7 @@ const Card = ({
   hideButton,
 }: {
   item: { [name: string]: any };
-  title?: string;
+  title: string;
   content?: JSX.Element;
   hideButton?: boolean;
 }) => {
