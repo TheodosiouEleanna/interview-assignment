@@ -1,4 +1,4 @@
-import { API_KEY } from "../constants/constants";
+import { API_KEY } from "../../constants/constants";
 
 export const getData = ({
   resourcePath,

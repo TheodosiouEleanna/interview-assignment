@@ -10,7 +10,6 @@ import Header from "./components/Header/Header.tsx";
 import RentalDetails from "./components/RentalDetails/RentalDetails.tsx";
 
 // Todo: Organize styles
-// Todo: Add a loader
 // Todo: page wrapper
 
 const App = () => {

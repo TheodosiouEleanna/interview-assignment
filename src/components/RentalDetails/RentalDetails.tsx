@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { apiPath } from "../../constants/constants";
-import { getData } from "../../functions/functions";
+import { getData } from "../../utils/functions/functions";
 import { IRental } from "../../types/interfaces";
 import Loader from "../Loader/Loader";
 import Card from "../RentalList/Card/Card";
@@ -33,8 +33,8 @@ const RentalDetails = () => {
   }
 
   return (
-    <div style={{ overflow: "auto" }}>
-      <div style={{ width: "80%" }}>
+    <div style={{ overflow: "auto", height: "100%" }}>
+      <div style={{ height: "100%", width: "80%" }}>
         <div style={{ margin: "30px" }}>
           <Title
             title='Rental Details'

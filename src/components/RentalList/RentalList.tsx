@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { apiPath } from "../../constants/constants";
-import { getData } from "../../functions/functions";
+import { getData } from "../../utils/functions/functions";
 import { IRental } from "../../types/interfaces";
 import Loader from "../Loader/Loader";
 import Title from "../Title/Title";

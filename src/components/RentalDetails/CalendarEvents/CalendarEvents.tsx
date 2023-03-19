@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { apiPath } from "../../../constants/constants";
 import { ICalendarEvent } from "../../../types/interfaces";
 import Card from "../../RentalList/Card/Card";
-import { getData } from "../../../functions/functions";
+import { getData } from "../../../utils/functions/functions";
 import Loader from "../../Loader/Loader";
 
 interface ICalendarStateProps {
