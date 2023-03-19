@@ -1,21 +1,30 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useMemo } from "react";
 import { API_KEY } from "../../constants/constants";
+import Card from "../RentalList/Card/Card.tsx";
+
+interface IStateSettings {
+  fullName: string;
+  apiKey: string;
+  helperText?: string;
+}
 
 export const Input = ({
   type,
   name,
   label,
   value,
+  style,
   onChange,
 }: {
   type: string;
   name: string;
   label: string;
+  style?: React.CSSProperties;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
-    <div style={{ padding: "10px", display: "flex" }}>
+    <div style={{ padding: "10px" }}>
       <label>{label}:</label>
       <input type={type} name={name} value={value} onChange={onChange} />
     </div>
@@ -26,31 +35,44 @@ export const Button = ({
   type,
   label,
   style,
+  helperText = "",
   onClick,
 }: {
   type?: "button" | "submit" | "reset" | undefined;
   label: string;
   style?: React.CSSProperties;
+  helperText?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }) => {
   return (
-    <button type={type} style={style} onClick={onClick}>
-      {label}
-    </button>
+    <>
+      <button type={type} style={style} onClick={onClick}>
+        {label}
+      </button>
+      <p style={{ color: "green" }}>{helperText}</p>
+    </>
   );
 };
 
 const Settings = () => {
-  const [settings, setSettings] = useState({
+  const [settings, setSettings] = useState<IStateSettings>({
     fullName: "",
     apiKey: "",
+    helperText: "",
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    localStorage.setItem("fullName", settings.fullName);
-    localStorage.setItem("apiKey", settings.apiKey);
-  };
+  const handleSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      localStorage.setItem("fullName", settings.fullName);
+      localStorage.setItem("apiKey", settings.apiKey);
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        helperText: "Settings saved!",
+      }));
+    },
+    [settings.apiKey, settings.fullName]
+  );
 
   const handleInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,6 +86,47 @@ const Settings = () => {
     },
     [settings]
   );
+  const cardContent = useMemo(
+    () => (
+      <form onSubmit={handleSubmit}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginTop: "30px",
+          }}
+        >
+          <Input
+            type='text'
+            name='fullName'
+            label='Full Name'
+            value={settings.fullName}
+            onChange={handleInputChange}
+          />
+          <Input
+            type='text'
+            name='apiKey'
+            label='API Key'
+            value={settings.apiKey}
+            onChange={handleInputChange}
+          />
+          <Button
+            type='submit'
+            label='Save'
+            helperText={settings.helperText}
+            style={{ position: "absolute", bottom: 30, right: 30 }}
+          />
+        </div>
+      </form>
+    ),
+    [
+      handleInputChange,
+      handleSubmit,
+      settings.apiKey,
+      settings.fullName,
+      settings.helperText,
+    ]
+  );
 
   useEffect(() => {
     const storedFullName = localStorage.getItem("fullName");
@@ -75,55 +138,9 @@ const Settings = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        minHeight: "300px",
-        backgroundColor: "rgb(241, 241, 241)",
-        position: "relative",
-        borderRadius: "10px",
-        margin: "40px",
-        display: "flex",
-        flexDirection: "column",
-        minWidth: "700px",
-        maxWidth: "1000px",
-        height: "50vh",
-        marginLeft: 30,
-      }}
-    >
-      <div style={{ margin: "40px" }}>
-        <h2>Settings</h2>
-        <form onSubmit={handleSubmit}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginTop: "40px",
-            }}
-          >
-            <Input
-              type='text'
-              name='fullName'
-              label='Full Name'
-              value={settings.fullName}
-              onChange={handleInputChange}
-            />
-            <Input
-              type='text'
-              name='apiKey'
-              label='API Key'
-              value={settings.apiKey}
-              onChange={handleInputChange}
-            />
-            <Button type='submit' label='Save' />
-            <Button
-              style={{ position: "absolute", right: 40, bottom: 40 }}
-              type='submit'
-              label='Clear Cache
-            '
-            />
-          </div>
-        </form>
-      </div>
+    <div style={{ margin: "40px" }}>
+      <h2>Settings</h2>
+      <Card item={{}} content={cardContent} hideButton />
     </div>
   );
 };

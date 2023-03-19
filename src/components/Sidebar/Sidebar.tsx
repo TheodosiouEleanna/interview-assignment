@@ -20,13 +20,14 @@ const Sidebar = () => {
         alignItems: "center",
         flexDirection: "column",
         backgroundColor: "rgb(241, 241, 241)",
+        boxShadow: "1px 1px 2px rgba(0, 0, 0, 0.2)",
       }}
     >
       <div
         style={{
-          height: "50px",
+          height: "49px",
           width: "80%",
-          borderBottom: "1px solid rgb(51, 51, 51)",
+          borderBottom: "1px solid rgb(51, 51, 51, 0.5)",
         }}
       ></div>
       <ul>

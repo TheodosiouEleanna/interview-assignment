@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { apiPath, API_KEY } from "../../constants/constants";
+import { apiPath } from "../../constants/constants";
+import { getData } from "../../functions/functions.ts";
 import { IRental } from "../../types/interfaces";
-import { RentalCard } from "./RentalCard.tsx/RentalCard.tsx";
+import Card from "./Card/Card.tsx";
+
+interface IRentalsStateProps {
+  object: string;
+  data: IRental[];
+}
 
 const RentalList = () => {
-  const [rentals, setRentals] = useState<IRental[]>([]);
+  const [rentals, setRentals] = useState<IRentalsStateProps>();
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch(`${apiPath}/rentals`, {
-      headers: {
-        Authorization: API_KEY,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
+    const dataCall = async () => {
+      try {
+        const data = await getData({
+          resourcePath: `${apiPath}/rentals`,
+        });
+        setRentals(data);
         setLoading(false);
-        setRentals(data.data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching data:", error);
-      });
+      }
+    };
+    dataCall();
   }, []);
-  console.log("render", rentals, rentals.length);
 
   if (loading) {
     return (
@@ -59,11 +62,31 @@ const RentalList = () => {
           flexDirection: "column",
         }}
       >
-        {rentals.length
-          ? rentals.map((rental) => (
-              <RentalCard rental={rental} key={rental.id} />
-            ))
-          : "no rentals"}
+        <div
+          style={{
+            marginTop: "40px",
+          }}
+        >
+          <h2>{rentals?.object.length ? `${rentals?.object}s` : "Rentals"}</h2>
+        </div>
+
+        {rentals?.data.length ? (
+          rentals.data.map((rental) => (
+            <Card item={rental} key={rental.id} title={rental.name} />
+          ))
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              height: "100%",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            No rentals
+          </div>
+        )}
       </div>
     </div>
   );

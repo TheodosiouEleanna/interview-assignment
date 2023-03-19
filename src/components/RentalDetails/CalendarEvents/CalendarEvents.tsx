@@ -1,43 +1,63 @@
 import React, { useEffect, useState } from "react";
 import { apiPath, API_KEY } from "../../../constants/constants";
 import { ICalendarEvent } from "../../../types/interfaces";
+import { displayData } from "../../RentalList/Card/Card.tsx";
+import Card from "../../RentalList/Card/Card.tsx";
+import { getData } from "../../../functions/functions.ts";
 
-const displayCalendarEvents = (event: ICalendarEvent) => {
-  return Object.values(event).map((value, index) => {
-    if (value === null) return;
-    if (typeof value === "object")
-      return <div key={index}>{JSON.stringify(value)}</div>;
-    return <div key={index}>{value}</div>;
-  });
-};
+interface ICalendarStateProps {
+  object: string;
+  data: ICalendarEvent[];
+}
 
 const CalendarEvents = ({ id }) => {
-  const [calendarEvents, setCalendarEvents] = useState<ICalendarEvent[]>([]);
+  const [calendarEvents, setCalendarEvents] = useState<ICalendarStateProps>();
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch(`${apiPath}/rentals/${id}/calendar-events`, {
-      headers: {
-        Authorization: `${API_KEY}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
+    const dataCall = async () => {
+      try {
+        const data = await getData({
+          resourcePath: `${apiPath}/rentals/${id}/calendar-events`,
+        });
+        setCalendarEvents(data as ICalendarStateProps);
         setLoading(false);
-        setCalendarEvents(data.data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching data:", error);
-      });
+      }
+    };
+    dataCall();
   }, [id]);
 
+  if (loading) {
+    return (
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        Loading...
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h2>CalendarEvents</h2>
-      {calendarEvents.length
-        ? calendarEvents.map((event) => displayCalendarEvents(event))
-        : "No calendar events"}
+    <div
+      style={{
+        margin: "30px",
+      }}
+    >
+      <div style={{ marginLeft: "30px" }}>
+        {calendarEvents?.data.length
+          ? calendarEvents?.data.map((event) => (
+              <Card title={event.title} item={event} hideButton />
+            ))
+          : "No calendar events"}
+      </div>
     </div>
   );
 };
