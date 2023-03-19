@@ -33,11 +33,13 @@ export const displayData = (rental: {
 const Card = ({
   item,
   title,
+  style,
   content,
   hideButton,
 }: {
   item: { [name: string]: any };
   title: string;
+  style?: React.CSSProperties;
   content?: JSX.Element;
   hideButton?: boolean;
 }) => {
@@ -55,6 +57,7 @@ const Card = ({
         position: "relative",
         boxShadow: "1px 1px 2px rgba(0, 0, 0, 0.2)",
         margin: "30px",
+        ...style,
       }}
     >
       {item?.image_path && (

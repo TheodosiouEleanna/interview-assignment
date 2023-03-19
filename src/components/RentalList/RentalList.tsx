@@ -3,8 +3,10 @@ import { apiPath } from "../../constants/constants";
 import { getData } from "../../utils/functions/functions";
 import { IRental } from "../../types/interfaces";
 import Loader from "../Loader/Loader";
-import Title from "../Title/Title";
 import Card from "./Card/Card";
+import Divider from "../Divider/Divider";
+import PageWrapper from "../PageWrapper/PageWrapper";
+import NoContent from "../NoConent/NoContent";
 
 interface IRentalsStateProps {
   object: string;
@@ -36,48 +38,20 @@ const RentalList = () => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "100%",
-        overflow: "auto",
-      }}
+    <PageWrapper
+      title={rentals?.object.length ? `${rentals?.object}s` : "Rentals"}
     >
-      <div
-        style={{
-          width: "80%",
-          marginLeft: "40px",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <Title
-          title={rentals?.object.length ? `${rentals?.object}s` : "Rentals"}
-          style={{
-            marginTop: "40px",
-          }}
-        />
-
+      <>
         {rentals?.data.length ? (
           rentals.data.map((rental) => (
             <Card item={rental} key={rental.id} title={rental.name || ""} />
           ))
         ) : (
-          <div
-            style={{
-              display: "flex",
-              height: "100%",
-              justifyContent: "center",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            No rentals
-          </div>
+          <NoContent message='No Rentals Found' />
         )}
-      </div>
-    </div>
+        <Divider />
+      </>
+    </PageWrapper>
   );
 };
 

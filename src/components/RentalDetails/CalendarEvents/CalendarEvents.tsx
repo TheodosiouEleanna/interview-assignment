@@ -4,6 +4,8 @@ import { ICalendarEvent } from "../../../types/interfaces";
 import Card from "../../RentalList/Card/Card";
 import { getData } from "../../../utils/functions/functions";
 import Loader from "../../Loader/Loader";
+import Divider from "src/components/Divider/Divider";
+import NoContent from "src/components/NoConent/NoContent";
 
 interface ICalendarStateProps {
   object: string;
@@ -35,11 +37,7 @@ const CalendarEvents = ({ id }: { id: string }) => {
   }
 
   return (
-    <div
-      style={{
-        margin: "30px",
-      }}
-    >
+    <>
       {calendarEvents?.data?.length ? (
         <div
           style={{
@@ -49,23 +47,19 @@ const CalendarEvents = ({ id }: { id: string }) => {
           }}
         >
           {calendarEvents?.data.map((event) => (
-            <Card title={event.title} item={event} hideButton />
+            <Card
+              title={event.title}
+              item={event}
+              hideButton
+              style={{ width: "90%", height: "90%" }}
+            />
           ))}
         </div>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            height: "100%",
-            justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          No calendar events
-        </div>
+        <NoContent message='No calendar events' />
       )}
-    </div>
+      <Divider />
+    </>
   );
 };
 

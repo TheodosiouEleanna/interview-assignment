@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+// eslint-disable-next-line no-unused-vars
 import styles from "./styles/styles.css";
 import Sidebar from "./components/Sidebar/Sidebar.tsx";
 import { Routes, Route } from "react-router-dom";
@@ -8,9 +9,6 @@ import Home from "./components/Home/Home.tsx";
 import Settings from "./components/Settings/Settings.tsx";
 import Header from "./components/Header/Header.tsx";
 import RentalDetails from "./components/RentalDetails/RentalDetails.tsx";
-
-// Todo: Organize styles
-// Todo: page wrapper
 
 const App = () => {
   return (

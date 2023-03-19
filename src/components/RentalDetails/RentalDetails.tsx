@@ -7,6 +7,7 @@ import Loader from "../Loader/Loader";
 import Card from "../RentalList/Card/Card";
 import Title from "../Title/Title";
 import CalendarEvents from "./CalendarEvents/CalendarEvents";
+import PageWrapper from "../PageWrapper/PageWrapper";
 
 const RentalDetails = () => {
   const { rentalId } = useParams();
@@ -33,25 +34,17 @@ const RentalDetails = () => {
   }
 
   return (
-    <div style={{ overflow: "auto", height: "100%" }}>
-      <div style={{ height: "100%", width: "80%" }}>
-        <div style={{ margin: "30px" }}>
-          <Title
-            title='Rental Details'
-            style={{
-              marginTop: "40px",
-            }}
-          />
-          <div style={{ marginLeft: "30px" }}>
-            {rental && (
-              <Card item={rental} hideButton title={rental.name || ""} />
-            )}
-          </div>
-          <Title title='Upcoming Calendar Events' style={{ padding: "20px" }} />
+    <PageWrapper title='Rental Details'>
+      <>
+        <div style={{ marginLeft: "30px" }}>
+          {rental && (
+            <Card item={rental} hideButton title={rental.name || ""} />
+          )}
         </div>
+        <Title title='Upcoming Calendar Events' style={{ marginTop: "30px" }} />
         <CalendarEvents id={rentalId || ""} />
-      </div>
-    </div>
+      </>
+    </PageWrapper>
   );
 };
 

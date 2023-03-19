@@ -4,7 +4,7 @@ export const getData = ({
   resourcePath,
 }: {
   resourcePath: string;
-}): { [name: string]: any } => {
+}): Promise<{ [name: string]: any }> => {
   return new Promise((resolve) => {
     fetch(resourcePath, {
       headers: {
