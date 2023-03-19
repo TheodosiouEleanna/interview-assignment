@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { menuItems } from "../../constants/constants";
+import { menuItems } from "src/constants/constants";
 
 const MenuItem = (item: { text: string; path: string }): JSX.Element => {
   return (

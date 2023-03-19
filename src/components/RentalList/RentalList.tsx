@@ -14,7 +14,10 @@ interface IRentalsStateProps {
 }
 
 const RentalList = () => {
-  const [rentals, setRentals] = useState<IRentalsStateProps>();
+  const [rentals, setRentals] = useState<IRentalsStateProps>({
+    object: "",
+    data: [],
+  });
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -39,10 +42,10 @@ const RentalList = () => {
 
   return (
     <PageWrapper
-      title={rentals?.object.length ? `${rentals?.object}s` : "Rentals"}
+      title={rentals?.object?.length ? `${rentals?.object}s` : "Rentals"}
     >
       <>
-        {rentals?.data.length ? (
+        {rentals?.data?.length ? (
           rentals.data.map((rental) => (
             <Card item={rental} key={rental.id} title={rental.name || ""} />
           ))

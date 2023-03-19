@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState, useMemo } from "react";
-import { API_KEY } from "../../constants/constants";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import Card from "../RentalList/Card/Card";
@@ -81,7 +80,7 @@ const Settings = () => {
     const storedApiKey = localStorage.getItem("apiKey");
     setSettings({
       fullName: storedFullName || "",
-      apiKey: storedApiKey || `${API_KEY}`,
+      apiKey: storedApiKey || "",
     });
   }, []);
 

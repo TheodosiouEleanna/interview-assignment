@@ -13,7 +13,10 @@ interface ICalendarStateProps {
 }
 
 const CalendarEvents = ({ id }: { id: string }) => {
-  const [calendarEvents, setCalendarEvents] = useState<ICalendarStateProps>();
+  const [calendarEvents, setCalendarEvents] = useState<ICalendarStateProps>({
+    object: "",
+    data: [],
+  });
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {

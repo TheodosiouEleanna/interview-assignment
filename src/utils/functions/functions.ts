@@ -1,10 +1,9 @@
-import { API_KEY } from "../../constants/constants";
-
 export const getData = ({
   resourcePath,
 }: {
   resourcePath: string;
 }): Promise<{ [name: string]: any }> => {
+  const API_KEY = localStorage.getItem("apiKey") || "";
   return new Promise((resolve) => {
     fetch(resourcePath, {
       headers: {
