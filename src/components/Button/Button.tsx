@@ -17,7 +17,7 @@ const Button = ({
       <button type={type} style={style} onClick={onClick}>
         {label}
       </button>
-      <p style={{ color: "green" }}>{helperText}</p>
+      <p style={{ color: "green", height: "1.5em" }}>{helperText}</p>
     </>
   );
 };
