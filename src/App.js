@@ -9,9 +9,10 @@ import Settings from "./components/Settings/Settings.tsx";
 import Header from "./components/Header/Header.tsx";
 import RentalDetails from "./components/RentalDetails/RentalDetails.tsx";
 
-// Todo: Add more data to the API
 // Todo: Move css to a separate file
+// Todo: Organize styles
 // Todo: Add a loader
+// Todo: page wrapper
 
 const App = () => {
   return (

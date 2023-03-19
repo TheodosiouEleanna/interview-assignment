@@ -1,6 +1,8 @@
 import React from "react";
-import { Button } from "../../Settings/Settings.tsx";
 import { useNavigate } from "react-router-dom";
+import Button from "../../Button/Button.tsx";
+import Divider from "../../Divider/Divider.tsx";
+import Title from "../../Title/Title.tsx";
 
 export const displayData = (rental: {
   [name: string]: any;
@@ -78,11 +80,7 @@ const Card = ({
           marginLeft: "30",
         }}
       >
-        {title && (
-          <div style={{ marginBottom: "30px" }}>
-            <h2>{title}</h2>
-          </div>
-        )}
+        {title && <Title title={title} style={{ marginBottom: "30px" }} />}
         {content ? content : null}
         {item ? displayData(item) : null}
       </div>

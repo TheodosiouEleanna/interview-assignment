@@ -4,6 +4,7 @@ import { ICalendarEvent } from "../../../types/interfaces";
 import { displayData } from "../../RentalList/Card/Card.tsx";
 import Card from "../../RentalList/Card/Card.tsx";
 import { getData } from "../../../functions/functions.ts";
+import Loader from "../../Loader/Loader.tsx";
 
 interface ICalendarStateProps {
   object: string;
@@ -30,19 +31,7 @@ const CalendarEvents = ({ id }) => {
   }, [id]);
 
   if (loading) {
-    return (
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        Loading...
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
@@ -51,7 +40,13 @@ const CalendarEvents = ({ id }) => {
         margin: "30px",
       }}
     >
-      <div style={{ marginLeft: "30px" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          margin: "20px",
+        }}
+      >
         {calendarEvents?.data.length
           ? calendarEvents?.data.map((event) => (
               <Card title={event.title} item={event} hideButton />

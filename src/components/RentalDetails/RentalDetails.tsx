@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import { apiPath } from "../../constants/constants";
 import { getData } from "../../functions/functions.ts";
 import { IRental } from "../../types/interfaces";
+import Loader from "../Loader/Loader.tsx";
 import Card from "../RentalList/Card/Card.tsx";
+import Title from "../Title/Title.tsx";
 import CalendarEvents from "./CalendarEvents/CalendarEvents.tsx";
 
 const RentalDetails = () => {
@@ -27,34 +29,19 @@ const RentalDetails = () => {
   }, [rentalId]);
 
   if (loading) {
-    return (
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        Loading...
-      </div>
-    );
+    return <Loader />;
   }
+
   console.log(rental);
 
   return (
     <div style={{ overflow: "auto" }}>
       <div style={{ margin: "30px" }}>
-        <div style={{ padding: "20px" }}>
-          <h2>Rental Details</h2>
-        </div>
+        <Title title='Rental Details' style={{ padding: "20px" }} />
         <div style={{ marginLeft: "30px" }}>
           {rental && <Card item={rental} hideButton title={rental.name} />}
         </div>
-        <div style={{ padding: "20px" }}>
-          <h2>Upcoming Calendar Events</h2>
-        </div>
+        <Title title='Upcoming Calendar Events' style={{ padding: "20px" }} />
       </div>
       <CalendarEvents id={rentalId} />
     </div>
