@@ -3,19 +3,24 @@ export const getData = ({
 }: {
   resourcePath: string;
 }): Promise<{ [name: string]: any }> => {
-  const API_KEY = localStorage.getItem("apiKey") || "";
+  const apiKey = localStorage.getItem("apiKey") || "";
+  const fullName = localStorage.getItem("fullName") || "";
   return new Promise((resolve) => {
-    fetch(resourcePath, {
-      headers: {
-        Authorization: API_KEY,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        resolve(data);
+    if (!apiKey || !fullName) {
+      return resolve({});
+    } else {
+      fetch(resourcePath, {
+        headers: {
+          [fullName]: apiKey,
+        },
       })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
   });
 };
