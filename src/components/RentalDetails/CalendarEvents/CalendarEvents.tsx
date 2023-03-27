@@ -4,7 +4,6 @@ import { ICalendarEvent } from "../../../types/interfaces";
 import Card from "../../RentalList/Card/Card";
 import { getData } from "../../../utils/functions/functions";
 import Loader from "../../Loader/Loader";
-import Divider from "src/components/Divider/Divider";
 import NoContent from "src/components/NoContent/NoContent";
 
 interface ICalendarStateProps {
@@ -39,31 +38,28 @@ const CalendarEvents = ({ id }: { id: string }) => {
     return <Loader />;
   }
 
-  return (
-    <>
-      {calendarEvents?.data?.length ? (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            margin: "20px",
-          }}
-        >
-          {calendarEvents?.data.map((event) => (
-            <Card
-              title={event.title}
-              item={event}
-              hideButton
-              style={{ width: "90%", minHeight: "450px" }}
-            />
-          ))}
-        </div>
-      ) : (
-        <NoContent message='No calendar events' />
-      )}
-      <Divider />
-    </>
-  );
+  if (calendarEvents && calendarEvents.data && calendarEvents.data.length > 0) {
+    return (
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          margin: "20px",
+        }}
+      >
+        {calendarEvents.data.map((event) => (
+          <Card
+            title={event.title}
+            item={event}
+            hideButton
+            style={{ width: "90%", minHeight: "450px" }}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  return <NoContent message='No calendar events' />;
 };
 
 export default CalendarEvents;
